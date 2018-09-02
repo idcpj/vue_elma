@@ -19,7 +19,7 @@
 
 <script>
 import header from './components/header/header'
-
+const config = require('../config')
 export default {
   data () {
     return {
@@ -27,7 +27,7 @@ export default {
     }
   },
   created(){
-    this.$http.get('http://localhost:3000/seller').then((response)=>{
+    this.$http.get(config.apiHost.seller).then((response) => {
       response = response.body
       this.seller = response
     })

@@ -3,8 +3,12 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 
 const path = require('path')
-
+const host = process.env.NODE_ENV == 'production'?'http://192.168.0.1':'http://localhost:3000/'
 module.exports = {
+  apiHost:{
+    host:host,
+    seller:host+"seller"  //获取商户信息
+  },
   dev: {
 
     // Paths

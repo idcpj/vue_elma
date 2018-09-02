@@ -1,6 +1,6 @@
 <template>
     <div class="star" :class="starType">
-        <div v-for="itemClass in itemClasses" :class="itemClass" :key="itemClass" class="star-item"></div>
+        <div v-for="itemClass in itemClasses" :class="itemClass" :key="itemClass.id" class="star-item"></div>
     </div>
 </template>
 
