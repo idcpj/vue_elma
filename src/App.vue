@@ -13,13 +13,13 @@
             </div>
         </div>
         <router-view></router-view>
-        <div class="content">i am content</div>
     </div>
 </template>
 
 <script>
 import header from './components/header/header'
 const config = require('../config')
+
 export default {
   data () {
     return {

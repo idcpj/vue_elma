@@ -7,7 +7,8 @@ const host = process.env.NODE_ENV == 'production'?'http://192.168.0.1':'http://l
 module.exports = {
   apiHost:{
     host:host,
-    seller:host+"seller"  //获取商户信息
+    seller:host+"seller",  //获取商户信息
+    goods:host+"goods",  //获取商户信息
   },
   dev: {
 
