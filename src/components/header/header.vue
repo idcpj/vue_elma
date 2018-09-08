@@ -86,9 +86,7 @@ export default {
     }
   },
   props: {
-    seller: {
-      type: Object
-    }
+    seller: {}
   },
   methods: {
     showDetail(){

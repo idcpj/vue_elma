@@ -39,18 +39,21 @@
                 </li>
             </ul>
         </div>
+        <shopcart :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice"></shopcart>
     </div>
 </template>
 
 <script>
   import BScroll from 'better-scroll'
+  import shopcart from '../shopcart/shopcart'
 
   const config = require('../../../config')
   var ERR_OK = 200
 
   export default {
     props: {
-      seller: {}
+      seller: {
+      }
     },
     data(){
         return {
@@ -112,6 +115,9 @@
             this.listHeight.push(height)
         }
       }
+    },
+    components: {
+      shopcart
     }
 
   }

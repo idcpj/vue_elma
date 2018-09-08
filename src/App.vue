@@ -12,7 +12,7 @@
                 <router-link to="/seller"> 商家</router-link>
             </div>
         </div>
-        <router-view></router-view>
+        <router-view :seller="seller"></router-view>
     </div>
 </template>
 
@@ -23,7 +23,7 @@ const config = require('../config')
 export default {
   data () {
     return {
-      seller: {}
+      seller: Object
     }
   },
   created(){
