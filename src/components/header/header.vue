@@ -36,7 +36,7 @@
          </div>
          <!--订单详情-->
          <transition name="fade">
-             <div v-show="detailShow" class="detail" transition="fade">
+             <div v-show="detailShow" class="detail" >
                  <div class="detail-wrapper clearfix">
                      <div class="detail-main">
                          <h1 class="name">{{seller.name}}</h1>
@@ -76,7 +76,7 @@
 </template>
 
 <script >
-import star from '../star/star'
+import star from '@/components/star/star'
 
 export default {
   data() {

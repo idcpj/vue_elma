@@ -1,6 +1,6 @@
 <template>
     <div class="shopcart">
-        <div class="content">
+        <div class="content" @click="toggleList">
             <!--购物车左侧-->
             <div class="content-left">
                 <div class="logo-wrapper">
@@ -19,18 +19,61 @@
                 </div>
             </div>
         </div>
+        <div class="ball-container">
+            <transition-group name="balltra">
+                <div class="ball" v-for="(ball,index) in balls" :key="index" v-show="ball.show" >
+                    <div class="inner"></div>
+                </div>
+            </transition-group>
+        </div>
+        <transition>
+            <div class="shopcart-list" v-show="listShow">
+                <div class="list-header">
+                    <h1 class="title">购物车</h1>
+                    <span class="empty">清空</span>
+                </div>
+                <div class="list-content">
+                    <ul>
+                        <li class="food" v-for="(food,index) in selectFoods" :key="index">
+                            <span class="name">{{food.name}}</span>
+                            <div class="price">
+                                <span>$ {{food.price*food*count}}</span>
+                            </div>
+                            <div class="cartcontroll-wrapper">
+                                <cartcontroll :food="food"></cartcontroll>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </transition>
     </div>
 </template>
 
 <script>
+  import cartcontroll from '@/components/cartcontroll/cartcontroll'
+
 
   export default {
+    data(){
+      return {
+        balls: [
+          {show: false},
+          {show: false},
+          {show: false},
+          {show: false},
+          {show: false},
+          {show: false}
+        ],
+        fold: true
+      }
+    },
     props: {
       selectFoods: {
         type: Array,
         default(){
           return [
-            {price: 10, count: 1}
+//            {price: 10, count: 1}
           ]
         }
       },
@@ -45,14 +88,18 @@
       totalPrice () {
         let total = 0
         this.selectFoods.forEach((food) => {
-          total += food.price * food.count
+          if (food.count > 0){
+            total += food.price * food.count
+          }
         })
         return total
       },
       totalCount () {
         let count = 0
         this.selectFoods.forEach((food)=>{
-          count += food.count
+          if (food.count){
+            count += food.count
+          }
         })
         return count
       },
@@ -72,9 +119,27 @@
           className = "heightline"
         }
         return className
+      },
+      listShow () {
+        if (!this.totalCount) {
+          this.fold = true
+          return false
+        }
+        let show = !this.fold
+        return show
       }
     },
-    components: {}
+    methods: {
+      toggleList(){
+        if (!this.totalCount){
+          return false
+        }
+        this.fold = !this.fold
+      }
+    },
+    components: {
+      cartcontroll
+    }
   }
 </script>
 
@@ -162,5 +227,49 @@
                     &.heightline
                         background:green
                         color:#fff
+        .ball-container
+            .ball
+                position:flxed
+                left:32px
+                bottom:22px
+                z-index:200
+                &.balltra-enter-active,&.balltra-leave-active
+                    tansition:all 0.4s
+                    .inenr
+                        width:16px
+                        height:16px
+                        border-radius:50%
+                        background:rgb(0,160,220)
+                        tansition:all 0.4s
+        .shopcart-list
+            position:absolute
+            top:0
+            left:0
+            z-index:-1
+            width:100%
+            transform:translate3d(0, -100%, 0)
+            &.v-enter-active,&.v-leave-active
+                transition:all 0.3s linear
+                transform:translate3d(0, -100%, 0)
+            &.v-enter,&.v-leave-to
+                opacity:0
+                transform:translate3d(0, 0, 0)
+            .list-header
+                height:40px
+                line-height:40px
+                padding:0 18px
+                background:#f3f5f7
+                border-bottom:1px solid rgba(7,17,27,0.1)
+                .title
+                    float:left
+                    font-size:14px
+                    color:rgb(7,17,27)
+                .empty
+                    float:right
+                    font-size:12px
+                    color:rgb(0,160,220)
+            .list-content
+                padding:0 18px
+
 
 </style>

@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import header from './components/header/header'
+import header from '@/components/header/header'
 const config = require('../config')
 
 export default {
