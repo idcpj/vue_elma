@@ -1,12 +1,12 @@
 <template>
     <div class="cartcontroll">
         <transition >
-            <div class="cart-decrease" v-show="food.count>0" @click="decreaseCart()">
+            <div class="cart-decrease" v-show="food.count>0" @click.stop.prevent="decreaseCart">
                 <span class="icon-remove_circle_outline inner"></span>
             </div>
         </transition>
         <div class="cart-count" v-show="food.count>0">{{food.count}}</div>
-        <div class="cart-add icon-add_circle" @click="addCart()"></div>
+        <div class="cart-add icon-add_circle" @click.stop.prevent="addCart"></div>
     </div>
 </template>
 
@@ -44,14 +44,12 @@
             line-height:24px
             font-size:24px
             color:#068dc7
+            .inner
+                display:inline-block
+                line-height:24px
+                font-size:24px
             &.v-enter-active,&.v-leave-active
                 transition:all 0.3s linear
-                .inner
-                    display:inline-block
-                    line-height:24px
-                    font-size:24px
-                    transition:all 0.3s linear
-                    transform:rotate(0)
             &.v-enter,&.v-leave-to
                 opacity:0
                 transform:translate3d(30px, 0, 0)

@@ -49,13 +49,11 @@
                 </div>
             </transition>
         </div>
-        <transition>
-            <div class="list-mark" v-show="listShow"  @click="toggleList"></div>
-        </transition>
+        <div class="list-mark" v-show="listShow"  @click="toggleList"></div>
     </div>
 </template>
 
-<script>
+<script type="text/ecmascript-6">
   import cartcontroll from '@/components/cartcontroll/cartcontroll'
   import BScroll from 'better-scroll'
 
@@ -331,8 +329,4 @@
             &.v-enter,&.v-leave-to
                 opacity:0
                 background:rgba(7,17,27,0)
-
-
-
-
 </style>
