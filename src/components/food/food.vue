@@ -31,7 +31,12 @@
                 <split></split>
                 <div class="rating">
                     <h1 class="title">商品评价</h1>
-                    <ratingselect @ratingtype="ratingtype" @contenttoggle="contenttoggle"  :selectType="selectType" :onlyContent="onlyContent" :desc="desc" :ratings="food.ratings"></ratingselect>
+                    <ratingselect @ratingtype="ratingtype"
+                                  @contenttoggle="contenttoggle"
+                                  :selectType="selectType"
+                                  :onlyContent="onlyContent"
+                                  :desc="desc"
+                                  :ratings="food.ratings"></ratingselect>
                 </div>
 
                 <div class="rating-wrapper">
@@ -79,7 +84,7 @@
     data(){
         return {
           showFlag: false,
-          bscroll: false,
+          scroll: false,
           selectType: ALL,
           onlyContent: false,
           desc: {
@@ -92,12 +97,12 @@
     methods: {
         show() {
           this.showFlag = true
-          if (!this.bscroll) {
-            this.bscroll = new BScroll(this.$refs.foodScroll, {
+          if (!this.scroll) {
+            this.scroll = new BScroll(this.$refs.foodScroll, {
               click: true
             })
           } else {
-            this.bscroll.refresh()
+            this.scroll.refresh()
           }
         },
         hide() {
@@ -127,7 +132,6 @@
             } else {
               return type === this.selectType
             }
-
         }
     },
     filters: {

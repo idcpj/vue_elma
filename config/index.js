@@ -9,6 +9,7 @@ module.exports = {
     host:host,
     seller:host+"seller",  //获取商户信息
     goods:host+"goods",  //获取商户信息
+    ratings:host+"ratings",  //获取商户信息
   },
   dev: {
 
