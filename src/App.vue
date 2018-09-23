@@ -12,24 +12,35 @@
                 <router-link to="/seller"> 商家</router-link>
             </div>
         </div>
-        <router-view :seller="seller"></router-view>
+        <keep-alive>
+            <router-view :seller="seller" ></router-view>
+        </keep-alive>
     </div>
 </template>
 
+
+
+
 <script>
+import {urlParse} from '@/common/js/util'
 import header from '@/components/header/header'
 const config = require('../config')
 
 export default {
   data () {
     return {
-      seller: Object
+      seller: {
+        id: (() => {
+          let queryParam = urlParse()
+          return queryParam.id
+        })()
+      }
     }
   },
   created(){
-    this.$http.get(config.apiHost.seller).then((response) => {
+    this.$http.get(config.apiHost.seller + "?id=" + this.seller.id).then((response) => {
       response = response.body
-      this.seller = response
+      this.seller = Object.assign({}, this.seller, response)
     })
   },
   components: {
