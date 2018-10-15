@@ -145,7 +145,7 @@
   }
 </script>
 
-<style scoped lang="stylus" type="stylesheet/stylus">
+<style scoped lang="stylus"  type="text/stylus" >
     @import "../../common/stylus/maxin.styl";
     .food
         position:fixed

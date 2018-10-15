@@ -102,7 +102,7 @@
           // 由于 goods 的渲染是异步方式,所以加入 nextTick 时,使其可精确计算DOM 高度
             this.$nextTick(()=>{
               this._initScroll()
-              this._calculateHeight()
+//              this._calculateHeight()
             })
         }
 
@@ -146,7 +146,7 @@
   }
 </script>
 
-<style scoped lang="stylus" type="stylesheet/stylus">
+<style scoped lang="stylus" type="text/stylus">
     @import "../../common/stylus/maxin.styl";
     .goods
         display:flex
